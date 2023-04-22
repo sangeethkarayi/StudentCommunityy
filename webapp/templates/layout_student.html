@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>STUDENT COMMUNITY</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+</head>
+<body background="https://images.unsplash.com/photo-1599008633840-052c7f756385?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmxhbmslMjBub3RlYm9va3xlbnwwfHwwfHw%3D&w=1000&q=80" style="background-repeat: no-repeat; background-size: cover;">
+	<nav>
+		<div class="nav-wrapper light-blue darken-4">
+		      <a href="{{url_for('studentHome')}}" class="brand-logo brand-title-l hide-on-med-and-down">STUDENT COMMUNITY</a>
+		      <a href="{{url_for('studentHome')}}" class="brand-logo brand-title-m hide-on-large-only">STUDENT COMMUNITY</a>
+		      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+		    <ul id="nav-mobile" class="right  hide-on-med-and-down">
+		    	<li>
+		        	<a href="{{url_for('communityHomePage')}}" class="nav-item">
+		        		<i class="material-icons left white-text">forum</i>
+		        		<span class="hide-on-small-only">Community</span>
+		        	</a>
+		        </li>
+		    	<li>
+		    		<a class="dropdown-trigger nav-item product" href="#!" data-target="dropdown1">Notes<i class="material-icons right white-text">arrow_drop_down</i></a>
+		    	</li>
+		        <li>
+		        	<a href="" class="nav-item dropdown-trigger profile" data-target='dropdown2'>
+		        		<i class="material-icons right white-text" style="font-size: 3rem; margin-left: .5rem;">account_circle</i>
+		        		<span class="hide-on-small-only" style="text-transform: capitalize;">Hi {{studentDetails['name']}}!</span>
+		        	</a>
+		        </li>
+		      </ul>
+	    </div>
+	</nav>
+
+	<ul id="dropdown1" class="dropdown-content">
+	  <li><a href="{{url_for('uploadNotesPage')}}" class="light-blue-text text-darken-4"><i class="material-icons">add</i>Upload Notes</a></li>
+	  <li><a href="{{url_for('studentNotes')}}" class="light-blue-text text-darken-4"><i class="material-icons">collections</i>Show My Notes</a></li>
+	</ul>
+
+	<ul id="dropdown2" class="dropdown-content">
+	  <li><a class="light-blue-text text-darken-4" href="{{url_for('studentProfile')}}"><i class="material-icons">account_circle</i>Profile</a></li>
+	  <li><a class="light-blue-text text-darken-4" href="{{url_for('studentLogout')}}"><i class="material-icons">logout</i>Logout</a></li>
+	</ul>
+
+	<ul class="sidenav" id="mobile-demo">
+		<li>
+			<div class="user-view">
+	            <div class="background">
+	            	<img src="{{url_for('static', filename='images/user-bg.jpg')}}">
+	            </div>
+			    <a href="{{url_for('studentProfile')}}">
+			    	<img class="circle" src="{{studentDetails['imgUrl']}}">
+			    </a>
+			    <a href="{{url_for('studentProfile')}}">
+			    	<span class="white-text name" style="text-transform: capitalize;">{{studentDetails['name']}}</span>
+			    </a>
+			    <a href="{{url_for('studentProfile')}}">
+			    	<span class="white-text email">{{studentDetails['email']}}</span>
+			    </a>
+            </div>
+      </li>
+	    <li><a href="{{url_for('studentHome')}}">Home</a></li>
+	    <li><a href="{{url_for('studentProfile')}}">Profile</a></li>
+	    <li><a href="{{url_for('uploadNotesPage')}}">Upload Notes</a></li>
+	    <li><a href="{{url_for('studentNotes')}}">My Notes</a></li>
+	    <li><a href="{{url_for('studentLogout')}}">Logout</a></li>
+	</ul>
+	{% block content %}
+	{%endblock%}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.sidenav');
+	    var instances = M.Sidenav.init(elems);
+	  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.product');
+		    var options={coverTrigger:false,constrainWidth:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.profile');
+		    var options={coverTrigger:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	 <script type="text/javascript">
+	  	 document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.collapsible');
+	    var instances = M.Collapsible.init(elems);
+	  });
+
+	  </script>
+
+	  <script type="text/javascript">
+	  	document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(elems);
+	  });
+	  </script>
+
+	  	<script type="text/javascript">
+	      	var el = document.querySelector('.tabs');
+	      	var instance = M.Tabs.init(el);
+	    </script>
+
+	    <script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.slider');
+		    var instances = M.Slider.init(elems);
+		  });
+		</script>
+		<script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.modal');
+		    var instances = M.Modal.init(elems);
+		  });
+		</script>
+</body>
+</html>

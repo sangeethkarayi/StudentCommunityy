@@ -1,0 +1,173 @@
+{% extends "layout_student.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col s12" style="padding:0;">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12">
+				<ul class="tabs">
+			        <li class="tab col s4">
+			        	<a href="#community-home" class="light-blue-text text-darken-4">HOME</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#my-post" class="light-blue-text text-darken-4">MY POST</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#add-post" class="light-blue-text text-darken-4">ADD POST</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="community-home">
+	<div class="row">
+		{% if warning != '' %}
+		    <div class="col s12 center">
+		    	<p class="white-text" style="margin-top: 1rem; margin-bottom: 0; font-weight: bold;">{{warning}}</p>
+		    </div>
+		{% endif %}
+		{% for i in otherPost %}
+			<div class="card-panel col s6 offset-s3">
+				<div class="row" style="margin-bottom:.6rem;">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{otherPost[i]['studentDetails']['imgUrl']}}" style="width: 3.5rem; height: 3.5rem; border-radius: 50%;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{otherPost[i]['studentDetails']['name']}}</p>
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{otherPost[i]['date']}} {{otherPost[i]['time']}}</p>
+					</div>
+					{% if otherPost[i]['imgUrl'] != '' %}
+						<div class="col s12">
+							<img src="{{otherPost[i]['imgUrl']}}" style="width:100%">
+						</div>
+					{% endif %}
+					<div class="col s12">
+						<p style="margin-top: 0;">{{otherPost[i]['post']}}</p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12" style="margin-top:.5rem;">
+						<a href="{{url_for('postComments', postID=i)}}"><span class="orange-text">COMMENTS</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="col s12" id="my-post">
+	<div class="row">
+		{% for i in myPost %}
+			<div class="card-panel col s6 offset-s3">
+				<div class="row" style="margin-bottom:.6rem;">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{studentDetails['imgUrl']}}" style="width: 3.5rem; height: 3.5rem; border-radius: 50%;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{studentDetails['name']}}</p>
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{myPost[i]['date']}} {{myPost[i]['time']}}</p>
+					</div>
+					{% if myPost[i]['imgUrl'] != '' %}
+						<div class="col s12">
+							<img src="{{myPost[i]['imgUrl']}}" style="width:100%">
+						</div>
+					{% endif %}
+					<div class="col s12">
+						<p style="margin-top: 0;">{{myPost[i]['post']}}</p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s4" style="margin-top:.5rem;">
+						<a href="{{url_for('postComments', postID=i)}}"><span class="orange-text">COMMENTS</span></a>
+					</div>
+					<div class="col s4 center" style="margin-top:.5rem;">
+						<a href="#modal-edit-{{i}}" class="modal-trigger"><span class="orange-text">EDIT</span></a>
+					</div>
+					<div class="col s4" style="margin-top:.5rem;">
+						<a href="#modal-delete-{{i}}" class="right modal-trigger"><span class="orange-text">DELETE</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="col s12" id="add-post">
+	<div class="row">
+		<div class="col s8 offset-s2">
+			<div class="card-panel grey lighten-2">
+				<div class="row">
+					<div class="col s12 center-align">
+						<h5 class='light-blue-text text-darken-4' style="font-weight: bold; text-transform: uppercase;">ADD POST</h5>
+					</div>
+					<form action="{{url_for('addPost')}}" method="post" enctype="multipart/form-data">
+						<div class="col s12 input-field">
+							<i class="material-icons prefix">edit</i>
+							<input type="text" name="post" id='sub-name' class="validate" required autocomplete="off">
+							<label for="sub-name">Post</label>
+						</div>
+						<div class="col s12 file-field input-field">
+							<div class="btn light-blue darken-4">
+								<span>PHOTO</span>
+								<input type="file" name="photo" class="validate">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text">
+							</div>
+						</div>
+						<div class="col s12 center-align">
+							<input type="hidden" name="courseID" value="{{studentDetails['courseID']}}">
+							<input type="submit" name="" value='ADD POST' class="btn light-blue darken-4">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% for i in myPost %}
+	<div id="modal-delete-{{i}}" class="modal">
+	    <div class="modal-content">
+	      <h4 class="light-blue-text text-darken-4">DELETE POST</h4>
+	      <p>Are you sure to delete this post?</p>
+	    </div>
+	    <div class="modal-footer">
+	    	<form action="{{url_for('deletePost')}}" method="post">
+	    		<input type="hidden" name="postID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat red-text">DELETE</button>
+	    	</form>
+	    </div>
+	</div>
+	<div id="modal-edit-{{i}}" class="modal">
+		<form action="{{url_for('updatePost')}}" method="post" enctype="multipart/form-data">
+		    <div class="modal-content">
+		      <h4 class="light-blue-text text-darken-4" style="text-transform: uppercase;">EDIT POST</h4>
+		      	<div class="input-field">
+			        <i class="material-icons prefix">edit</i>
+			        <input id="c_name" type="text" class="validate" name='post' value="{{myPost[i]['post']}}" required autocomplete="off">
+			        <label for="c_name">Post</label>
+		        </div>
+		        <div class="col s12 file-field input-field">
+					<div class="btn light-blue darken-4">
+						<span>PHOTO</span>
+						<input type="file" name="photo" class="validate">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+		    </div>
+		    <div class="modal-footer">
+	    		<input type="hidden" name="postID" value="{{i}}">
+	    		<button type="submit" class="waves-effect waves-green btn-flat light-blue-text text-darken-4">UPDATE</button>
+		    </div>
+		</form>
+	</div>
+{% endfor %}
+
+{% endblock %}

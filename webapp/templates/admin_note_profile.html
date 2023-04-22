@@ -1,0 +1,289 @@
+{% extends "layout_admin.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col l8 s12 offset-l2">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12" style="margin-top:.1rem;">
+				<ul class="tabs">
+			        <li class="tab col s4">
+			        	<a href="#note-profile" class="light-blue-text text-darken-4">NOTE DETAILS</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#note-files" class="light-blue-text text-darken-4">FILES</a>
+			        </li>
+			        <li class="tab col s4">
+			        	<a href="#student-profile" class="light-blue-text text-darken-4">STUDENT DETAILS</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="note-profile" class="col s12">
+	<div class="row">
+		{% if warning != '' %}
+	    <div class="col s12 center">
+	    	<p class="red-text" style="margin-top: 1rem; margin-bottom: 0; font-weight: bold;">{{warning}}</p>
+	    </div>
+	  {% endif %}
+		<div class="card-panel col s6 offset-s3">
+			<div class="row" style="margin-bottom:.6rem;">
+				<div class="col s1" style="margin-top:.5rem;">
+					<img src="{{url_for('static', filename='images/notes.png')}}" style="width: 3.5rem; height: 3.5rem;">
+				</div>
+				<div class="col s11" style="margin-top: .5rem;">
+					<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{noteDetails['subjectName']}} Note</p>
+					<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{noteDetails['date']}} {{noteDetails['time']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Course:</span>
+						<span style="font-size:.9rem;">{{noteDetails['courseDetails']['name']}}</span>
+					</p>
+				</div>
+				<div class="col s12">
+					<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">{{noteDetails['description']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Status:</span>
+						{% if noteDetails['status'] == 'notApproved' %}
+							<span style="font-size:.9rem;">not approved</span>
+						{% else %}
+							<span style="font-size:.9rem;">{{noteDetails['status']}}</span>
+						{% endif %}
+					</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Rating:</span>
+						{% if noteDetails['averageRating'] == 5 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+              </span>
+            {% elif noteDetails['averageRating'] == 4 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+              </span>
+            {% elif noteDetails['averageRating'] == 3 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+              </span>
+            {% elif noteDetails['averageRating'] == 2 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+              </span>
+            {% elif noteDetails['averageRating'] == 1 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+              </span>
+            {% elif noteDetails['averageRating'] == 0 %}
+              <span>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+              </span>
+            {% endif %}
+					</p>
+				</div>
+				<div class="col s12" style="padding: 0">
+					<div class="divider"></div>
+				</div>
+				<div class="col s12 center" style="margin-top:.5rem;">
+					{% if noteDetails['status'] == 'notApproved' %}
+						<a class="btn light-blue darken-4 modal-trigger" href="#modal-approve">APPROVE</a>
+					{% elif noteDetails['status'] == 'approved' %}
+						<a class="btn light-blue darken-4 modal-trigger" href="#modal-block">BLOCK</a>
+					{% elif noteDetails['status'] == 'blocked' %}
+						<a class="btn light-blue darken-4 modal-trigger" href="#modal-unblock">UNBLOCK</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		{% if noteComment %}
+			<div class="col s6 offset-s3" style="padding:0;">
+				<ul class="collection with-header z-depth-1" style="margin: 0;">
+					<li>
+						<p style="font-weight:bold; margin: 0;" class="center-align collection-header light-blue darken-4 white-text">Comments</p>
+					</li>
+					{% for i in noteComment %}
+					    <li class="collection-item avatar">
+					    	<img src="{{noteComment[i]['studentDetails']['imgUrl']}}" class="circle z-depth-1">
+					      	<p class="black-text" style="font-weight:bold; text-transform: capitalize;" href="">{{noteComment[i]['studentDetails']['name']}}</p>
+					      	<p class="blue-grey-text">{{noteComment[i]['comment']}}</p>
+					      	<p class="blue-grey-text text-lighten-3" style="font-size: x-small; font-style:italic; font-weight:500;">{{noteComment[i]['date']}} {{noteComment[i]['time']}}</p>
+					      		<a href="#delete-comment_{{i}}" class="secondary-content modal-trigger"><i class="material-icons">delete</i></a>
+					      		<div id="delete-comment_{{i}}" class="modal">
+											<div class="modal-content">
+										    	<h4>Delete Comment</h4>
+										      	<p>Are you sure to delete comment?</p>
+										  </div>
+									    <div class="modal-footer">
+									    	<form action="{{url_for('deleteNoteCommentAdmin')}}" method="post" style="display: inline-block;">
+									    		<input type="hidden" name="commentID" value="{{i}}">
+									    		<input type="hidden" name="noteID" value="{{noteID}}">
+									    		<input type="submit" name="" value="DELETE" class="btn-flat red-text">
+									    	</form>
+									    </div>
+										</div>
+					    </li>
+				    {% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+<div class="col s12" id="note-files">
+	<div class="row">
+		<div class="col s6 offset-s3">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>File Name</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in noteDetails['docList'] %}
+						<tr style="font-weight: 600;" class="blue-grey-text text-lighten-2">
+							<td>{{i['fname']}}</td>
+							<td><a href="{{base_url}}/download/{{i['fname']}}" class="btn light-blue darken-4"><i class="material-icons white-text left">file_download</i>DOWNLOAD</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div id="student-profile" class="col s12">
+	<div class="row">
+		<div class="col s8 offset-s2 card-panel grey lighten-2" style="margin-top: 1rem; padding: 1rem;">
+			<div class="row">
+				<div class="col s12 center">
+					<img src="{{noteDetails['studentDetails']['imgUrl']}}" class="circle" style="width: 6rem; height: 6rem;">
+				</div>
+				<div class="col s12 center">
+					<h5 class="blue-grey-text text-darken-4" style="font-weight: bold; text-transform: capitalize; margin-top: .1rem; margin-bottom: 0">{{noteDetails['studentDetails']['name']}}</h5>
+					<p class="blue-grey-text text-lighten-1" style="margin: 0;">{{noteDetails['studentDetails']['email']}}</p>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Name</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{noteDetails['studentDetails']['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Gender</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{noteDetails['studentDetails']['gender']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">DOB</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{noteDetails['studentDetails']['dob']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Email</span>
+					<span class="right" style="font-weight:bold;">{{noteDetails['studentDetails']['email']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Course</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{noteDetails['studentDetails']['courseDetails']['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">College</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{noteDetails['studentDetails']['college']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+<div id="modal-approve" class="modal">
+    <div class="modal-content">
+      <h4 class="light-blue-text text-darken-4">APPROVE NOTE</h4>
+      <p>Are you sure to approve this note?</p>
+    </div>
+    <div class="modal-footer">
+    	<form action="{{url_for('noteAction')}}" method="post">
+    		<input type="hidden" name="noteID" value="{{noteID}}">
+    		<input type="hidden" name="action" value="approve">
+    		<button type="submit" class="waves-effect waves-green btn-flat red-text">APPROVE</button>
+    	</form>
+    </div>
+</div>
+
+<div id="modal-block" class="modal">
+    <div class="modal-content">
+      <h4 class="light-blue-text text-darken-4">BLOCK NOTE</h4>
+      <p>Are you sure to block this note?</p>
+    </div>
+    <div class="modal-footer">
+    	<form action="{{url_for('noteAction')}}" method="post">
+    		<input type="hidden" name="noteID" value="{{noteID}}">
+    		<input type="hidden" name="action" value="block">
+    		<button type="submit" class="waves-effect waves-green btn-flat red-text">BLOCK</button>
+    	</form>
+    </div>
+</div>
+
+<div id="modal-unblock" class="modal">
+    <div class="modal-content">
+      <h4 class="light-blue-text text-darken-4">UNBLOCK NOTE</h4>
+      <p>Are you sure to unblock this note?</p>
+    </div>
+    <div class="modal-footer">
+    	<form action="{{url_for('noteAction')}}" method="post">
+    		<input type="hidden" name="noteID" value="{{noteID}}">
+    		<input type="hidden" name="action" value="unblock">
+    		<button type="submit" class="waves-effect waves-green btn-flat red-text">UNBLOCK</button>
+    	</form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,358 @@
+{% extends "layout_admin.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col l8 s12 offset-l2">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12" style="margin-top:.1rem;">
+				<ul class="tabs">
+			        <li class="tab col s3">
+			        	<a href="#student-profile" class="light-blue-text text-darken-4">STUDENT DETAILS</a>
+			        </li>
+			        <li class="tab col s3">
+			        	<a href="#approved-notes" class="light-blue-text text-darken-4">APPROVED NOTES</a>
+			        </li>
+			        <li class="tab col s3">
+			        	<a href="#not-approved-notes" class="light-blue-text text-darken-4">NOT APPROVED NOTES</a>
+			        </li>
+			        <li class="tab col s3">
+			        	<a href="#blocked-notes" class="light-blue-text text-darken-4">BLOCKED NOTES</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="student-profile">
+	<div class="row">
+		<div class="col s8 offset-s2 card-panel grey lighten-2" style="margin-top: 1rem; padding: 1rem;">
+			<div class="row">
+				<div class="col s12 center">
+					<img src="{{studentDetails['imgUrl']}}" class="circle" style="width: 6rem; height: 6rem;">
+				</div>
+				<div class="col s12 center">
+					<h5 class="blue-grey-text text-darken-4" style="font-weight: bold; text-transform: capitalize; margin-top: .1rem; margin-bottom: 0">{{studentDetails['name']}}</h5>
+					<p class="blue-grey-text text-lighten-1" style="margin: 0;">{{studentDetails['email']}}</p>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Name</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{studentDetails['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Gender</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{studentDetails['gender']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">DOB</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{studentDetails['dob']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Email</span>
+					<span class="right" style="font-weight:bold;">{{studentDetails['email']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">Course</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{studentDetails['courseDetails']['name']}}</span>
+				</div>
+				<div class="col s12" style="margin-top: 1rem;">
+					<div class="divider blue-grey lighten-3"></div>
+				</div>
+				<div class="col s12" style="padding-left:1rem; padding-right: 1rem; margin-top: 1rem;">
+					<span style="font-weight:bold;">College</span>
+					<span class="right" style="font-weight:bold; text-transform: capitalize;">{{studentDetails['college']}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="approved-notes">
+	<div class="row">
+		{% for i in approvedNoteList %}
+			<div class="card-panel col s6 offset-s3">
+				<div class="row">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{url_for('static', filename='images/notes.png')}}" style="width: 3.5rem; height: 3.5rem;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{approvedNoteList[i]['subjectName']}} Note</p>
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{approvedNoteList[i]['date']}} {{approvedNoteList[i]['time']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">{{approvedNoteList[i]['description']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Files:</span>
+							{% for i in approvedNoteList[i]['docList'] %}
+								<span style="font-size:.9rem;">{{i['fname']}},</span>
+							{% endfor %}
+						</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Rating:</span>
+							{% if approvedNoteList[i]['averageRating'] == 5 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				              </span>
+				            {% elif approvedNoteList[i]['averageRating'] == 4 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif approvedNoteList[i]['averageRating'] == 3 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif approvedNoteList[i]['averageRating'] == 2 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif approvedNoteList[i]['averageRating'] == 1 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif approvedNoteList[i]['averageRating'] == 0 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% endif %}
+						</p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12" style="margin-top:.5rem;">
+						<a href="{{url_for('adminNoteProfile', noteID=i)}}"><span class="orange-text">MORE DETAILS</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="col s12" id="not-approved-notes">
+	<div class="row">
+		{% for i in notApprovedNoteList %}
+			<div class="card-panel col s6 offset-s3">
+				<div class="row">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{url_for('static', filename='images/notes.png')}}" style="width: 3.5rem; height: 3.5rem;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{notApprovedNoteList[i]['subjectName']}} Note</p>
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{notApprovedNoteList[i]['date']}} {{notApprovedNoteList[i]['time']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">{{notApprovedNoteList[i]['description']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Files:</span>
+							{% for i in notApprovedNoteList[i]['docList'] %}
+								<span style="font-size:.9rem;">{{i['fname']}},</span>
+							{% endfor %}
+						</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Rating:</span>
+							{% if notApprovedNoteList[i]['averageRating'] == 5 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				              </span>
+				            {% elif notApprovedNoteList[i]['averageRating'] == 4 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif notApprovedNoteList[i]['averageRating'] == 3 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif notApprovedNoteList[i]['averageRating'] == 2 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif notApprovedNoteList[i]['averageRating'] == 1 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif notApprovedNoteList[i]['averageRating'] == 0 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% endif %}
+						</p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12" style="margin-top:.5rem;">
+						<a href="{{url_for('adminNoteProfile', noteID=i)}}"><span class="orange-text">MORE DETAILS</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="col s12" id="blocked-notes">
+	<div class="row">
+		{% for i in blockedNoteList %}
+			<div class="card-panel col s6 offset-s3">
+				<div class="row">
+					<div class="col s1" style="margin-top:.5rem;">
+						<img src="{{url_for('static', filename='images/notes.png')}}" style="width: 3.5rem; height: 3.5rem;">
+					</div>
+					<div class="col s11" style="margin-top: .5rem;">
+						<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{blockedNoteList[i]['subjectName']}} Note</p>
+						<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{blockedNoteList[i]['date']}} {{blockedNoteList[i]['time']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">{{blockedNoteList[i]['description']}}</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Files:</span>
+							{% for i in blockedNoteList[i]['docList'] %}
+								<span style="font-size:.9rem;">{{i['fname']}},</span>
+							{% endfor %}
+						</p>
+					</div>
+					<div class="col s12">
+						<p style="margin-top: 0;">
+							<span style="font-weight:bold;">Rating:</span>
+							{% if blockedNoteList[i]['averageRating'] == 5 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				              </span>
+				            {% elif blockedNoteList[i]['averageRating'] == 4 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif blockedNoteList[i]['averageRating'] == 3 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif blockedNoteList[i]['averageRating'] == 2 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif blockedNoteList[i]['averageRating'] == 1 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% elif blockedNoteList[i]['averageRating'] == 0 %}
+				              <span>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+				              </span>
+				            {% endif %}
+						</p>
+					</div>
+					<div class="col s12" style="padding: 0">
+						<div class="divider"></div>
+					</div>
+					<div class="col s12" style="margin-top:.5rem;">
+						<a href="{{url_for('adminNoteProfile', noteID=i)}}"><span class="orange-text">MORE DETAILS</span></a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

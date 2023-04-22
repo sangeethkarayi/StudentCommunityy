@@ -1,0 +1,114 @@
+{% extends "layout_admin.html" %}
+{% block content %}
+	<div class="row" style="margin-bottom: 0;">
+		<div class="col l8 s12 offset-l2">
+			<div class="row" style="margin-bottom: 0;">
+				<div class="col s12" style="margin-top:.1rem;">
+					<ul class="tabs">
+				        <li class="tab col s6">
+				        	<a href="#course-list" class="light-blue-text text-darken-4">COURSES</a>
+				        </li>
+				        <li class="tab col s6">
+				        	<a href="#course-add" class="light-blue-text text-darken-4">COURSE REGISTRATION</a>
+				        </li>
+				    </ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="course-list" class="col s12">
+		<div class="row">
+			{% if warning != '' %}
+			    <div class="col s12 center">
+			    	<p class="red-text" style="margin-top: 1rem; margin-bottom: 0; font-weight: bold;">{{warning}}</p>
+			    </div>
+			  {% endif %}
+			<div class="col l8 s10 offset-l2 offset-s1">
+				<table class="centered highlight">
+					<thead>
+						<tr>
+							<th>COURSE ID</th>
+							<th>Name</th>
+							<th>#</th>
+							<th>#</th>
+							<th>#</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in courseList %}
+							<tr style="font-weight: 500;" class="blue-grey-text text-lighten-2">
+								<td>{{i}}</td>
+								<td style="text-transform: capitalize;">{{courseList[i]['name']}}</td>
+								{% if i != 'COURSEOTH' %}
+									<td>
+										<a href="#modal-edit-{{i}}" class="btn light-blue darken-4 modal-trigger"><i class="material-icons white-text left">edit</i>EDIT</a>
+									</td>
+									<td>
+										<a href="#modal-delete-{{i}}" class="btn light-blue darken-4 modal-trigger"><i class="material-icons white-text left">delete</i>DELETE</a>
+									</td>
+								{% else %}
+									<td></td>
+									<td></td>
+								{% endif %}
+								<td>
+									<a href="{{url_for('adminStudentList', courseID=i)}}" class="btn light-blue darken-4"><i class="material-icons white-text left">auto_stories</i>STUDENTS</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="course-add" class="col s12">
+		<div class="row">
+			<div class="col l8 s10 offset-l2 offset-s1 card-panel grey lighten-2" style="margin-top: 1rem; padding: 1rem;">
+				<div class="row">
+					<div class="col s12 center">
+						<h5 class="light-blue-text text-darken-4" style="text-decoration: underline; font-weight: bold;">COURSE REGISTRATION</h5>
+					</div>
+					<form action="{{url_for('courseReg')}}" method="post">
+						<div class="input-field col s12">
+					        <i class="material-icons prefix">edit</i>
+					        <input id="course_name" type="text" pattern="[a-zA-Z\s]+"  title="Enter valid Course Name"  class="validate" name='name' required>
+					        <label for="course_name">Course Name</label>
+				        </div>
+				      	<div class="col s12 center">
+				      		<button type="submit" class="btn light-blue darken-4" style="font-weight: bold;">REGISTER</button>
+				      	</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% for i in courseList %}
+		<div id="modal-delete-{{i}}" class="modal">
+		    <div class="modal-content">
+		      <h4 class="light-blue-text text-darken-4">DELETE COURSE</h4>
+		      <p>Are you sure to delete this course?</p>
+		    </div>
+		    <div class="modal-footer">
+		    	<form action="{{url_for('courseDelete')}}" method="post">
+		    		<input type="hidden" name="courseID" value="{{i}}">
+		    		<button type="submit" class="waves-effect waves-green btn-flat red-text">DELETE</button>
+		    	</form>
+		    </div>
+		</div>
+		<div id="modal-edit-{{i}}" class="modal">
+			<form action="{{url_for('courseUpdate')}}" method="post">
+			    <div class="modal-content">
+			      <h4 class="light-blue-text text-darken-4" style="text-transform: uppercase;">EDIT COURSE</h4>
+			      	<div class="input-field">
+				        <i class="material-icons prefix">edit</i>
+				        <input id="c_name" type="text" class="validate" name='name' value="{{courseList[i]['name']}}" required>
+				        <label for="c_name">Course Name</label>
+			        </div>
+			    </div>
+			    <div class="modal-footer">
+		    		<input type="hidden" name="courseID" value="{{i}}">
+		    		<button type="submit" class="waves-effect waves-green btn-flat light-blue-text text-darken-4">UPDATE</button>
+			    </div>
+			</form>
+		</div>
+	{% endfor %}
+{% endblock %}

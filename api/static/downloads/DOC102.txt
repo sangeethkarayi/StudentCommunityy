@@ -1,0 +1,9 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyCB2goGue7-qZcyjbnECLQE8MMZaaVbkwI",
+  authDomain: "think-2739d.firebaseapp.com",
+  databaseURL: "https://think-2739d.firebaseio.com",
+  projectId: "think-2739d",
+  storageBucket: "think-2739d.appspot.com",
+  messagingSenderId: "43973219951",
+  appId: "1:43973219951:web:62d31e42df4dfd38621f9a"
+};

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>STUDENT COMMUNITY</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+</head>
+<body background="https://media.istockphoto.com/id/643950674/photo/education-background.jpg?b=1&s=170667a&w=0&k=20&c=AsRevu0ZOEI7JNlI9iLK66-BYMsjfE0wPla6jx4s2E4=" style="background-repeat: no-repeat; background-size: cover;">
+<h2 align="center">STUDENT COMMUNITY</h2>
+		<ul id="nav-mobile" class="center">
+		        <li>
+		        	<a href="{{url_for('studentLogin')}}" class="nav-item">
+		        		<span><button class="button button1" align="center" type="submit">LOGIN</button></span>
+		        	</a>
+		        </li>
+		    </ul>
+	
+
+	{% block content %}
+	{%endblock%}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.sidenav');
+	    var instances = M.Sidenav.init(elems);
+	  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.product');
+		    var options={coverTrigger:false,constrainWidth:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	<script type="text/javascript">
+		 	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.profile');
+		    var options={coverTrigger:false}
+		    var instances = M.Dropdown.init(elems,options);
+		  });
+	</script>
+	 <script type="text/javascript">
+	  	 document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('.collapsible');
+	    var instances = M.Collapsible.init(elems);
+	  });
+
+	  </script>
+
+	  <script type="text/javascript">
+	  	document.addEventListener('DOMContentLoaded', function() {
+	    var elems = document.querySelectorAll('select');
+	    var instances = M.FormSelect.init(elems);
+	  });
+	  </script>
+
+	  	<script type="text/javascript">
+	      	var el = document.querySelector('.tabs');
+	      	var instance = M.Tabs.init(el);
+	    </script>
+
+	    <script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.slider');
+		    var instances = M.Slider.init(elems);
+		  });
+		</script>
+		<script type="text/javascript">
+		  	document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.modal');
+		    var instances = M.Modal.init(elems);
+		  });
+		</script>
+</body>
+</html>

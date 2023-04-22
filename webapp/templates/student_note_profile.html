@@ -1,0 +1,206 @@
+{% extends "layout_student.html" %}
+{% block content %}
+
+<div class="row" style="margin-bottom: 0;">
+	<div class="col s12" style="padding:0;">
+		<div class="row" style="margin-bottom: 0;">
+			<div class="col s12" style="margin-top:.1rem;">
+				<ul class="tabs">
+			        <li class="tab col s6">
+			        	<a href="#note-profile" class="light-blue-text text-darken-4">NOTE DETAILS</a>
+			        </li>
+			        <li class="tab col s6">
+			        	<a href="#note-files" class="light-blue-text text-darken-4">FILES</a>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col s12" id="note-profile">
+	<div class="row">
+		<div class="card-panel col s6 offset-s3">
+			<div class="row" style="margin-bottom:.6rem;">
+				<div class="col s1" style="margin-top:.5rem;">
+					<img src="{{url_for('static', filename='images/notes.png')}}" style="width: 3.5rem; height: 3.5rem;">
+				</div>
+				<div class="col s11" style="margin-top: .5rem;">
+					<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{noteDetails['subjectName']}} Note</p>
+					<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{noteDetails['date']}} {{noteDetails['time']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Course:</span>
+						<span style="font-size:.9rem;">{{noteDetails['courseDetails']['name']}}</span>
+					</p>
+				</div>
+				<div class="col s12">
+					<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">{{noteDetails['description']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Status:</span>
+						{% if noteDetails['status'] == 'notApproved' %}
+							<span style="font-size:.9rem;">not approved</span>
+						{% else %}
+							<span style="font-size:.9rem;">{{noteDetails['status']}}</span>
+						{% endif %}
+					</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Rating:</span>
+						{% if noteDetails['averageRating'] == 5 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			              </span>
+			            {% elif noteDetails['averageRating'] == 4 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			              </span>
+			            {% elif noteDetails['averageRating'] == 3 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			              </span>
+			            {% elif noteDetails['averageRating'] == 2 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			              </span>
+			            {% elif noteDetails['averageRating'] == 1 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			              </span>
+			            {% elif noteDetails['averageRating'] == 0 %}
+			              <span>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			                <i class="material-icons orange-text" style="font-size: large;">star_border</i>
+			              </span>
+			            {% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+		{% if noteDetails['status'] == 'approved' %}
+			<div class="col s6 offset-s3 z-depth-1 grey lighten-5" style="margin-bottom:1rem">
+				<div class="row" style="margin-bottom: 0;">
+					<div class="col s1" style="margin-top: .5rem; margin-bottom: .5rem;">
+						<img src="{{studentDetails['imgUrl']}}" style="border-radius: 50%; width: 3rem; height: 3rem;" class="z-depth-1">
+					</div>
+					<form action="{{url_for('addNoteCommentOwn')}}" method="post" autocomplete="off">
+						<div class="col s9 input-field" style="margin-top:0; margin-bottom: 0; padding-left: 3rem; padding-right:0;">
+							<input type="hidden" name="noteID" value="{{noteID}}">
+							<input type="text" name="comment" placeholder="type comment here.." required>
+						</div>
+						<div class="col s2" style="margin-top: 1rem;">
+							<button type="submit" class="btn light-blue darken-4">SEND</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		{% endif %}
+
+		{% if noteComment %}
+			<div class="col s6 offset-s3" style="padding:0;">
+				<ul class="collection with-header z-depth-1" style="margin: 0;">
+					<li>
+						<p style="font-weight:bold; margin: 0;" class="center-align collection-header light-blue darken-4 white-text">Comments</p>
+					</li>
+					{% for i in noteComment %}
+					    <li class="collection-item avatar">
+					    	<img src="{{noteComment[i]['studentDetails']['imgUrl']}}" class="circle z-depth-1">
+					      	<p class="black-text" style="font-weight:bold; text-transform: capitalize;" href="">{{noteComment[i]['studentDetails']['name']}}</p>
+					      	<p class="blue-grey-text">{{noteComment[i]['comment']}}</p>
+					      	<p class="blue-grey-text text-lighten-3" style="font-size: x-small; font-style:italic; font-weight:500;">{{noteComment[i]['date']}} {{noteComment[i]['time']}}</p>
+					      	{% if studentID == noteComment[i]['studentID'] %}
+					      		<a href="#edit-comment_{{i}}" class="secondary-content modal-trigger" style="margin-right:3rem;"><i class="material-icons left">edit</i></a>
+					      		<div id="edit-comment_{{i}}" class="modal">
+									<form action="{{url_for('editNoteCommentOwn')}}" method="post">
+										<div class="modal-content">
+									    	<h5 class="light-blue-text text-darken-4" style="font-weight: bold;">Update Comment</h5>
+									    	<div class='input-field'>
+												<i class="material-icons prefix">question_answer</i>
+												<input id='input-comment' type="text" name="comment" required class="validate" value="{{noteComment[i]['comment']}}" autocomplete="off">
+												<label for='input-comment'>Comment</label>
+											</div>
+									    </div>
+									    <div class="modal-footer">
+								    		<input type="hidden" name="noteID" value="{{noteID}}">
+								    		<input type="hidden" name="commentID" value="{{i}}">
+								    		<input type="submit" name="" value="UPDATE" class="btn-flat blue-text">
+									    </div>
+								    </form>
+								</div>
+					      		<a href="#delete-comment_{{i}}" class="secondary-content modal-trigger"><i class="material-icons">delete</i></a>
+					      		<div id="delete-comment_{{i}}" class="modal">
+									<div class="modal-content">
+								    	<h4>Delete Comment</h4>
+								      	<p>Are you sure to delete comment?</p>
+								    </div>
+								    <div class="modal-footer">
+								    	<form action="{{url_for('deleteNoteCommentOwn')}}" method="post" style="display: inline-block;">
+								    		<input type="hidden" name="commentID" value="{{i}}">
+								    		<input type="hidden" name="noteID" value="{{noteID}}">
+								    		<input type="submit" name="" value="DELETE" class="btn-flat red-text">
+								    	</form>
+								    </div>
+								</div>
+					      	{% endif %}
+					    </li>
+				    {% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+<div class="col s12" id="note-files">
+	<div class="row">
+		<div class="col s6 offset-s3">
+			<table class="centered highlight">
+				<thead>
+					<tr>
+						<th>File Name</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in noteDetails['docList'] %}
+						<tr style="font-weight: 600;">
+							<td class="white-text">{{i['fname']}}</td>
+							<td><a href="{{base_url}}/download/{{i['fname']}}" class="btn light-blue darken-4"><i class="material-icons white-text left">file_download</i>DOWNLOAD</a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

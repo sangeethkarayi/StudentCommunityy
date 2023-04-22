@@ -1,0 +1,46 @@
+{% extends "layout_guest.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col s12 center">
+		<h5 style="font-weight: bold; text-transform: capitalize; text-decoration: underline;" class="light-blue-text text-darken-4">Notes</h5>
+	</div>
+	{% for i in noteList %}
+		<div class="card-panel col s6 offset-s3">
+			<div class="row" style="margin-bottom:.6rem;">
+				<div class="col s1" style="margin-top:.5rem;">
+					<img src="{{noteList[i]['studentDetails']['imgUrl']}}" style="width: 3.5rem; height: 3.5rem; border-radius: 50%;">
+				</div>
+				<div class="col s11" style="margin-top: .5rem;">
+					<p style="text-transform: capitalize; font-weight: bold; margin-top: 0; margin-bottom: 0;" class="light-blue-text  text-darken-4">{{noteList[i]['studentDetails']['name']}}</p>
+					<p style="text-transform: capitalize; margin-top: 0; margin-bottom: 0; font-size: .8rem; font-weight: 500;" class="blue-grey-text text-lighten-3">{{noteList[i]['date']}} {{noteList[i]['time']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="text-transform: capitalize;"><span style="font-weight:bold;">Subject : </span>{{noteList[i]['subjectName']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="font-weight:bold; margin-top: 0; margin-bottom: 0;">Description</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">{{noteList[i]['description']}}</p>
+				</div>
+				<div class="col s12">
+					<p style="margin-top: 0;">
+						<span style="font-weight:bold;">Files:</span>
+						{% for i in noteList[i]['docList'] %}
+							<span style="font-size:.9rem;">{{i['fname']}},</span>
+						{% endfor %}
+					</p>
+				</div>
+				<div class="col s12" style="padding: 0">
+					<div class="divider"></div>
+				</div>
+				<div class="col s12" style="margin-top:.5rem;">
+					<a href="{{url_for('studentLogin')}}"><span class="orange-text">MORE DETAILS</span></a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

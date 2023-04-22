@@ -1,0 +1,94 @@
+[debug] [2023-04-22T08:03:06.268Z] ----------------------------------------------------------------------
+[debug] [2023-04-22T08:03:06.271Z] Command:       /usr/local/bin/firebase /Users/sangeeth/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase emulators:start
+[debug] [2023-04-22T08:03:06.272Z] CLI Version:   11.28.0
+[debug] [2023-04-22T08:03:06.272Z] Platform:      darwin
+[debug] [2023-04-22T08:03:06.272Z] Node Version:  v16.16.0
+[debug] [2023-04-22T08:03:06.274Z] Time:          Sat Apr 22 2023 13:33:06 GMT+0530 (India Standard Time)
+[debug] [2023-04-22T08:03:06.274Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-22T08:03:06.450Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-22T08:03:06.451Z] > authorizing via signed-in user (sangeethkarayi005@gmail.com)
+[debug] [2023-04-22T08:03:06.635Z] openjdk version "11.0.16.1" 2022-08-12
+
+[debug] [2023-04-22T08:03:06.641Z] OpenJDK Runtime Environment Homebrew (build 11.0.16.1+0)
+OpenJDK 64-Bit Server VM Homebrew (build 11.0.16.1+0, mixed mode)
+
+[debug] [2023-04-22T08:03:06.650Z] Parsed Java major version: 11
+[info] i  emulators: Starting emulators: database, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: database, hosting"}}
+[debug] [2023-04-22T08:03:07.414Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-22T08:03:07.416Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-22T08:03:07.416Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-04-22T08:03:07.416Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-04-22T08:03:07.450Z] [hub] writing locator at /var/folders/qc/v555c5gs45x8fxdpt60g0qzm0000gn/T/hub-studentcommunity2023.json
+[debug] [2023-04-22T08:03:07.471Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 [none]
+[debug] [2023-04-22T08:03:08.132Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 200
+[debug] [2023-04-22T08:03:08.132Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 {"projectId":"studentcommunity2023","projectNumber":"809317694907","displayName":"StudentCommunity","name":"projects/studentcommunity2023","resources":{"hostingSite":"studentcommunity2023","realtimeDatabaseInstance":"studentcommunity2023-default-rtdb","storageBucket":"studentcommunity2023.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_be91ac90-2e48-4d8e-95ae-b275c800b91c"}
+[debug] [2023-04-22T08:03:08.133Z] database rules config:  [{"instance":"studentcommunity2023-default-rtdb","rules":"/Users/sangeeth/Desktop/Project/student community/database.rules.json"}]
+[info] i  database: downloading firebase-database-emulator-v4.11.0.jar... {"metadata":{"emulator":{"name":"database"},"message":"downloading firebase-database-emulator-v4.11.0.jar..."}}
+[debug] [2023-04-22T08:03:08.150Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar 
+[debug] [2023-04-22T08:03:08.634Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar 200
+[debug] [2023-04-22T08:03:08.635Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar [stream]
+[debug] [2023-04-22T08:03:16.500Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-04-22T08:03:16.517Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-04-22T08:03:16.520Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-04-22T08:03:16.520Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/sangeeth/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning"],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"/Users/sangeeth/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\"],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[debug] [2023-04-22T08:03:17.128Z] WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/sangeeth/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+ {"metadata":{"emulator":{"name":"database"},"message":"WARNING: An illegal reflective access operation has occurred\nWARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (file:/Users/sangeeth/.cache/firebase/emulators/firebase-database-emulator-v4.11.0.jar) to field sun.nio.ch.SelectorImpl.selectedKeys\nWARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil\nWARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations\nWARNING: All illegal access operations will be denied in a future release\n"}}
+[debug] [2023-04-22T08:03:17.659Z] 13:33:17.658 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+ {"metadata":{"emulator":{"name":"database"},"message":"13:33:17.658 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started\n"}}
+[debug] [2023-04-22T08:03:17.781Z] 13:33:17.780 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+ {"metadata":{"emulator":{"name":"database"},"message":"13:33:17.780 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000\n"}}
+[debug] [2023-04-22T08:03:17.847Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/studentcommunity2023/sites 
+[debug] [2023-04-22T08:03:18.916Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/studentcommunity2023/sites 200
+[debug] [2023-04-22T08:03:18.917Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/studentcommunity2023/sites {"sites":[{"name":"projects/studentcommunity2023/sites/studentcommunity","defaultUrl":"https://studentcommunity.web.app","appId":"1:809317694907:web:64ac3d96614bba23e4189e","type":"USER_SITE"},{"name":"projects/studentcommunity2023/sites/studentcommunity2023","defaultUrl":"https://studentcommunity2023.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2023-04-22T08:03:18.918Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023/webApps/-/config [none]
+[debug] [2023-04-22T08:03:20.334Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023/webApps/-/config 200
+[debug] [2023-04-22T08:03:20.335Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023/webApps/-/config {"projectId":"studentcommunity2023","appId":"1:809317694907:web:64ac3d96614bba23e4189e","databaseURL":"https://studentcommunity2023-default-rtdb.firebaseio.com","storageBucket":"studentcommunity2023.appspot.com","locationId":"us-central","apiKey":"AIzaSyB1JFBD-wDv5fdrCfqBopVf1EqvBEgXvvY","authDomain":"studentcommunity2023.firebaseapp.com","messagingSenderId":"809317694907","measurementId":"G-3YPKMXZ8DQ"}
+[debug] [2023-04-22T08:03:20.353Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 [none]
+[debug] [2023-04-22T08:03:20.988Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 200
+[debug] [2023-04-22T08:03:20.989Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/studentcommunity2023 {"projectId":"studentcommunity2023","projectNumber":"809317694907","displayName":"StudentCommunity","name":"projects/studentcommunity2023","resources":{"hostingSite":"studentcommunity2023","realtimeDatabaseInstance":"studentcommunity2023-default-rtdb","storageBucket":"studentcommunity2023.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_be91ac90-2e48-4d8e-95ae-b275c800b91c"}
+[info] i  hosting[studentcommunity2023]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[studentcommunity2023]: Local server: http://127.0.0.1:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5000\u001b[22m\u001b[24m"}}
+[info] i  ui: downloading ui-v1.11.5.zip... {"metadata":{"emulator":{"name":"ui"},"message":"downloading ui-v1.11.5.zip..."}}
+[debug] [2023-04-22T08:03:21.143Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.5.zip 
+[debug] [2023-04-22T08:03:21.531Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.5.zip 200
+[debug] [2023-04-22T08:03:21.531Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.5.zip [stream]
+[debug] [2023-04-22T08:03:24.375Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-04-22T08:03:24.384Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-04-22T08:03:24.385Z] Starting Emulator UI with command {"binary":"node","args":["/Users/sangeeth/.cache/firebase/emulators/ui-v1.11.5/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/sangeeth/.cache/firebase/emulators/ui-v1.11.5/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-04-22T08:03:24.671Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-04-22T08:03:24.671Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[debug] [2023-04-22T08:03:24.692Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=studentcommunity2023-default-rtdb
+[debug] [2023-04-22T08:03:24.692Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  \"rules\": {\n    \".read\": true,\n    \".write\": true\n  }\n}"
+[debug] [2023-04-22T08:03:24.953Z] 13:33:24.952 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - studentcommunity2023-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 124ms, init: 0ms
+ {"metadata":{"emulator":{"name":"database"},"message":"13:33:24.952 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - studentcommunity2023-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 124ms, init: 0ms\n"}}
+[debug] [2023-04-22T08:03:24.995Z] 13:33:24.994 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace studentcommunity2023-default-rtdb status Active to Active
+ {"metadata":{"emulator":{"name":"database"},"message":"13:33:24.994 [NamespaceSystem-blocking-namespace-operation-dispatcher-6] INFO com.firebase.core.namespace.StateManager - Namespace studentcommunity2023-default-rtdb status Active to Active\n"}}
+[debug] [2023-04-22T08:03:25.033Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-04-22T08:03:25.033Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┬────────────────────────────────┐
+│ Emulator │ Host:Port      │ View in Emulator UI            │
+├──────────┼────────────────┼────────────────────────────────┤
+│ Database │ 127.0.0.1:9000 │ http://127.0.0.1:4000/database │
+├──────────┼────────────────┼────────────────────────────────┤
+│ Hosting  │ 127.0.0.1:5000 │ n/a                            │
+└──────────┴────────────────┴────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
